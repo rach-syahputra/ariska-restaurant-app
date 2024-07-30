@@ -1,0 +1,85 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/mixins' as mix;
+@use 'sass:map';
+
+.header__menu {
+  font-size: 32px;
+  margin: 10px auto;
+  display: block;
+  width: 30px;
+  cursor: pointer;
+}
+
+.nav {
+  width: 100%;
+  margin: auto;
+  padding: 16px;
+  text-align: center;
+  @include mix.centering-using-flex();
+  justify-content: space-between;
+}
+
+.nav__logo {
+  color: var.$red;
+  font-weight: 700;
+  user-select: none;
+}
+
+.nav__list {
+  @include mix.centering-using-flex();
+  gap: 32px;
+}
+
+.nav__item {
+  text-align: center;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.nav a {
+  display: inline-block;
+  padding: 16px;
+  text-decoration: none;
+  color: var.$gray;
+  transition: var.$smooth-transition;
+
+  &:hover {
+    color: var.$dark;
+  }
+}
+
+@media screen and (max-width: map.get(var.$breakpoints, 'sm')) {
+  .nav {
+    z-index: 10;
+    background-color: #fff;
+    width: 300px;
+    position: absolute;
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
+    transition: transform 0.3s ease;
+  }
+
+  .open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  .nav__item {
+    display: list-item;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'sm')) {
+  .header__menu {
+    display: none;
+  }
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
+  .nav {
+    max-width: 1024px;
+  }
+}

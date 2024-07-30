@@ -1,0 +1,25 @@
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Colors
+$red: #d61920;
+$red-hover: #c4171d;
+$green: #06c167;
+$green-hover: #05ad5c;
+$gray: #6c757d;
+$dark: #212529;
+
+// Fonts
+$primary-font: 'Open Sans', sans-serif;
+$small-font-size: 12px;
+$regular-font-size: 14px;
+$large-font-size: 16px;
+
+$primary-border-radius: 4px;
+
+$smooth-transition: all 150ms ease-in-out;

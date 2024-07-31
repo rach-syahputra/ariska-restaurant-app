@@ -2,11 +2,36 @@ import 'regenerator-runtime' /* for async await transpile */
 import '../styles/main.scss'
 
 window.addEventListener('DOMContentLoaded', async () => {
+  const init = async () => {
+    await initialData()
+    initialListener()
+  }
+
   const initialData = async () => {
     const fetchData = await fetch('../data/DATA.json')
     const response = await fetchData.json()
 
     populateDataToCard(response.restaurants)
+  }
+
+  const initialListener = async () => {
+    const menu = document.querySelector('#menu')
+    const hero = document.querySelector('.hero')
+    const main = document.querySelector('main')
+    const drawer = document.querySelector('#drawer')
+
+    menu.addEventListener('click', (event) => {
+      drawer.classList.toggle('open')
+      event.stopPropagation()
+    })
+
+    hero.addEventListener('click', () => {
+      drawer.classList.remove('open')
+    })
+
+    main.addEventListener('click', () => {
+      drawer.classList.remove('open')
+    })
   }
 
   const populateDataToCard = (restaurantData = null) => {
@@ -69,5 +94,5 @@ window.addEventListener('DOMContentLoaded', async () => {
     })
   }
 
-  initialData()
+  init()
 })

@@ -1,0 +1,19 @@
+@use '../abstracts/mixins' as mix;
+@use '../abstracts/variables' as var;
+@use 'sass:map';
+
+.hero {
+  @include mix.centering-using-flex();
+  margin: auto;
+  width: 100%;
+  min-height: 420px;
+  text-align: center;
+  background-image: url('../public/images/heros/hero-image_2.jpg');
+  background-position: center;
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'xl')) {
+  .hero {
+    max-width: 1000px;
+  }
+}

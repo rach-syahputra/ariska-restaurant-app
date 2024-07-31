@@ -75,7 +75,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       const name = document.createElement('h1')
       name.classList.add('restaurant-item__name')
-      name.textContent = restaurant.name
+
+      const anchor = document.createElement('a')
+      anchor.href = '#'
+      anchor.textContent = restaurant.name
+
+      name.appendChild(anchor)
 
       const description = document.createElement('p')
       description.classList.add('restaurant-item__description')

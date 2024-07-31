@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       const img = document.createElement('img')
       img.src = restaurant.pictureId
-      img.alt = restaurant.name
+      img.alt = `Gambar ${restaurant.name}`
 
       const city = document.createElement('p')
       city.classList.add('restaurant-item__city')

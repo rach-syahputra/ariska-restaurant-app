@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as var;
+@use 'sass:map';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 *,
@@ -9,4 +10,19 @@
 
 * {
   font-family: var.$primary-font;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+
+  .content {
+    padding: 32px;
+  }
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
+  main {
+    max-width: 1200px;
+  }
 }

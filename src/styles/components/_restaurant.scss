@@ -1,0 +1,81 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/mixins' as mix;
+@use 'sass:map';
+
+.restaurant {
+  width: 100%;
+  margin: 32px auto;
+  text-align: center;
+}
+
+.restaurant__label {
+  font-size: var.$text-3xl;
+}
+
+.restaurants {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+  margin: 32px auto auto;
+  text-align: left;
+}
+
+.restaurant-item {
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.restaurant-item__thumbnail {
+  position: relative;
+  width: 100%;
+  height: 240px;
+
+  img {
+    @include mix.cover-center-image;
+    border-radius: var.$primary-border-radius;
+  }
+
+  .restaurant-item__city {
+    position: absolute;
+    top: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: var.$dark;
+    border-top-right-radius: var.$primary-border-radius;
+    border-bottom-right-radius: var.$primary-border-radius;
+  }
+}
+
+.restaurant-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.restaurant-item__rating {
+  font-size: var.$text-base;
+}
+
+.restaurant-item__name {
+  font-size: var.$text-xl;
+}
+
+.restaurant-item__description {
+  font-size: var.$text-base;
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'md')) {
+  .restaurants {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
+  .restaurants {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

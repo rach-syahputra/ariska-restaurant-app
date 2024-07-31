@@ -25,6 +25,13 @@ window.addEventListener('DOMContentLoaded', async () => {
       event.stopPropagation()
     })
 
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        drawer.classList.toggle('open')
+      }
+      event.stopPropagation()
+    })
+
     hero.addEventListener('click', () => {
       drawer.classList.remove('open')
     })

@@ -9,18 +9,14 @@ class RestaurantList extends HTMLElement {
   }
 
   _emptyContent() {
-    this.innerHTML = ''
+    this._shadowRoot.innerHTML = ''
   }
 
   _updateStyle() {
-    this._style.textContent = `
-      :host {
-        display: block;
-      }
-      
+    this._style.textContent = `      
       .restaurant {
         width: 100%;
-        margin: 32px auto;
+        margin: 64px auto;
         text-align: center;
       }
 
@@ -40,7 +36,6 @@ class RestaurantList extends HTMLElement {
         display: grid;
         gap: 32px;
         grid-template-columns: 1fr;
-        margin: 32px auto auto;
         text-align: left;
       }
 
@@ -65,12 +60,12 @@ class RestaurantList extends HTMLElement {
     this._shadowRoot.appendChild(this._style)
 
     this._shadowRoot.innerHTML += `
-      <div class="restaurant">
+      <article class="restaurant">
         <h1 class="restaurant__label">Explore Restaurants</h1>
         <div class="restaurants" id="restaurantList">
           <slot></slot>
         </div>
-      </div>
+      </article>
     `
   }
 }

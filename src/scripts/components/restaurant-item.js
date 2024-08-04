@@ -124,7 +124,9 @@ class RestaurantItem extends HTMLElement {
         </div>
         <div class="restaurant-item__content">
           <span class="restaurant-item__rating">&#9733; ${this._restaurant.rating}</span>
-          <h1 class="restaurant-item__name"><a href="#">${this._restaurant.name}</a></h1>
+          <h1 class="restaurant-item__name"><a href="/#/detail/${this._restaurant.id}">${
+      this._restaurant.name
+    }</a></h1>
           <p class="restaurant-item__description">
             ${this._restaurant.description}
           </p>

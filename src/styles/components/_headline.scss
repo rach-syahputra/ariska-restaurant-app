@@ -2,6 +2,10 @@
 @use '../abstracts/mixins' as mix;
 @use 'sass:map';
 
+.headline {
+  margin-top: 32px;
+}
+
 .headline__figure {
   width: 100%;
 }

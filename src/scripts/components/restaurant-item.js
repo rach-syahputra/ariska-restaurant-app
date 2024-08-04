@@ -38,7 +38,6 @@ class RestaurantItem extends HTMLElement {
       .restaurant-item {
         box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
         width: 100%;
-        height: 630px;
         border-radius: 5px;
         overflow: hidden;
       }
@@ -91,6 +90,22 @@ class RestaurantItem extends HTMLElement {
       .restaurant-item__description {
         font-size: 14px;
         margin: 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        .restaurant-item {
+          height: 600px;
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        .restaurant-item {
+          height: 730px;
+        }
+
+        .restaurant-item__description {
+          font-size: 16px;
+        }
       }
     `
   }

@@ -34,7 +34,7 @@ class RestaurantList extends HTMLElement {
 
       .restaurants {
         display: grid;
-        gap: 32px;
+        gap: 40px;
         grid-template-columns: 1fr;
         text-align: left;
       }
@@ -42,12 +42,14 @@ class RestaurantList extends HTMLElement {
       @media screen and (min-width: 768px) {
         .restaurants {
           grid-template-columns: 1fr 1fr;
+          gap: 24px;
         }
       }
 
       @media screen and (min-width: 992px) {
         .restaurants {
           grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
         }
       }
     `

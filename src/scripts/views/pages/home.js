@@ -3,6 +3,7 @@ import RestaurantAPI from '../../../data/restaurant'
 const Home = {
   async render() {
     return `
+      <hero-element></hero-element>
       <headline-content></headline-content>
       <restaurant-list></restaurant-list>
     `

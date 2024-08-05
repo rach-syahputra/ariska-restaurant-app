@@ -62,10 +62,10 @@ class RestaurantHeading extends HTMLElement {
 
       .restaurant-heading__location {
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        align-items: center;
+        gap: 8px;
         font-size: 14px;
-        color: #6c757d;
+        font-weight: bold;
       }
 
       .restaurant-heading__order-btn {
@@ -122,8 +122,10 @@ class RestaurantHeading extends HTMLElement {
             ${this._restaurant.description}
           </p>
           <div class="restaurant-heading__location">
-            <p class="restaurant-heading__city">${this._restaurant.city}</p>
-            <p class="restaurant-heading__address">${this._restaurant.address}</p>
+            <img src="icons/location.svg" width="16" alt="">
+            <p class="restaurant-heading__address">
+              ${this._restaurant.city}, ${this._restaurant.address}
+            </p>
           </div>
           <button class="restaurant-heading__order-btn">
             Order now

@@ -7,7 +7,8 @@ const API_ENDPOINT = {
   getRestaurantList: `${CONFIG.BASE_URL}/list`,
   getRestaurantDetail: (id) => {
     return `${CONFIG.BASE_URL}/detail/${id}`
-  }
+  },
+  addReview: `${CONFIG.BASE_URL}/review`
 }
 
 export default API_ENDPOINT

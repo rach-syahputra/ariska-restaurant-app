@@ -8,6 +8,7 @@ const RestaurantDetail = {
       <restaurant-heading></restaurant-heading>
       <restaurant-menus></restaurant-menus>
       <customer-reviews></customer-reviews>
+      <add-review></add-review>
     `
   },
 
@@ -15,10 +16,33 @@ const RestaurantDetail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner()
     const restaurant = await RestaurantAPI.getDetail(url.id)
 
+    this.initialAddReviewButtonListener(restaurant.id)
     this.populateDataToRestaurantHeading(restaurant)
     this.populateDataToRestaurantCategory(restaurant.categories)
     this.populateDataToRestaurantMenus(restaurant.menus)
     this.populateDataToCustomerReviews(restaurant.customerReviews)
+  },
+
+  initialAddReviewButtonListener(id) {
+    const addReview = document.querySelector('add-review')
+
+    addReview.addEventListener('addReview', () => this.onAddReviewHandler(id))
+  },
+
+  async onAddReviewHandler(id) {
+    const addReview = document.querySelector('add-review')
+
+    const customer = {
+      id: id,
+      name: addReview.shadowRoot.getElementById('name').value,
+      review: addReview.shadowRoot.getElementById('review').value
+    }
+
+    try {
+      await RestaurantAPI.addReview(customer)
+    } catch (error) {
+      console.error(error)
+    }
   },
 
   populateDataToRestaurantHeading(restaurant) {

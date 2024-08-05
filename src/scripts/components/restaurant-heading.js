@@ -10,6 +10,13 @@ class RestaurantHeading extends HTMLElement {
     rating: ''
   }
 
+  _btnicon = 'heart-regular.svg'
+  _btntext = 'Add to Favorite'
+
+  static get observedAttributes() {
+    return ['btnicon', 'btntext']
+  }
+
   constructor() {
     super()
 
@@ -27,6 +34,22 @@ class RestaurantHeading extends HTMLElement {
 
   get restaurant() {
     return this._restaurant
+  }
+
+  set btnicon(value) {
+    this._btnicon = value
+  }
+
+  get btnicon() {
+    return this._btnicon
+  }
+
+  set btntext(value) {
+    this._btntext = value
+  }
+
+  get btntext() {
+    return this._btntext
   }
 
   _emptyContent() {
@@ -134,8 +157,8 @@ class RestaurantHeading extends HTMLElement {
             </p>
           </div>
           <button class="restaurant-heading__favorite-btn">
-            <span><img src="icons/heart-regular.svg" alt="" class="icon"></span>
-            Add to favorite
+            <span><img src="icons/${this._btnicon}" alt="" class="icon"></span>
+            ${this._btntext}
           </button>
         </div>
         <div class="restaurant-heading__image">
@@ -144,6 +167,19 @@ class RestaurantHeading extends HTMLElement {
         </div>
       </article>
     `
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'btnicon':
+        this.btnicon = newValue
+        break
+      case 'btntext':
+        this.btntext = newValue
+        break
+    }
+
+    this.render()
   }
 }
 

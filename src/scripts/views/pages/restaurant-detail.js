@@ -1,4 +1,3 @@
-import FavoriteRestaurantIdb from '../../../data/favorite-restaurant-idb'
 import RestaurantAPI from '../../../data/restaurant'
 import UrlParser from '../../../routes/url-parser'
 import FavoriteButtonInitiator from '../../../utils/favorite-button-initiator'

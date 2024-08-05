@@ -12,6 +12,20 @@ class RestaurantAPI {
     const responseJson = await response.json()
     return responseJson.restaurant
   }
+
+  static async addReview(customer) {
+    console.log('customer request', customer)
+    const response = await fetch(API_ENDPOINT.addReview, {
+      method: 'POST',
+      body: JSON.stringify(customer),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const responseJson = await response.json()
+    return responseJson.customerReviews
+  }
 }
 
 export default RestaurantAPI

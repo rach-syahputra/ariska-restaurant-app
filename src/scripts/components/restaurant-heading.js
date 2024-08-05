@@ -68,7 +68,7 @@ class RestaurantHeading extends HTMLElement {
         font-weight: bold;
       }
 
-      .restaurant-heading__order-btn {
+      .restaurant-heading__favorite-btn {
         background-color: #d61920;
         padding: 16px 24px;
         color: #fff;
@@ -81,8 +81,14 @@ class RestaurantHeading extends HTMLElement {
         transition: all 150ms ease-in-out;
       }
 
-      .restaurant-heading__order-btn:hover {
+      .restaurant-heading__favorite-btn:hover {
         background-color: #c4171d;
+      }
+
+      .restaurant-heading__favorite-btn .icon {
+        width: 16px;
+        color: #fff;
+        margin-right: 4px;
       }
 
       .restaurant-heading__image {
@@ -127,8 +133,9 @@ class RestaurantHeading extends HTMLElement {
               ${this._restaurant.city}, ${this._restaurant.address}
             </p>
           </div>
-          <button class="restaurant-heading__order-btn">
-            Order now
+          <button class="restaurant-heading__favorite-btn">
+            <span><img src="icons/heart-regular.svg" alt="" class="icon"></span>
+            Add to favorite
           </button>
         </div>
         <div class="restaurant-heading__image">

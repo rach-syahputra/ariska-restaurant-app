@@ -10,13 +10,6 @@ class RestaurantHeading extends HTMLElement {
     rating: ''
   }
 
-  _btnicon = 'heart-regular.svg'
-  _btntext = 'Add to Favorite'
-
-  static get observedAttributes() {
-    return ['btnicon', 'btntext']
-  }
-
   constructor() {
     super()
 
@@ -34,22 +27,6 @@ class RestaurantHeading extends HTMLElement {
 
   get restaurant() {
     return this._restaurant
-  }
-
-  set btnicon(value) {
-    this._btnicon = value
-  }
-
-  get btnicon() {
-    return this._btnicon
-  }
-
-  set btntext(value) {
-    this._btntext = value
-  }
-
-  get btntext() {
-    return this._btntext
   }
 
   _emptyContent() {
@@ -89,29 +66,6 @@ class RestaurantHeading extends HTMLElement {
         gap: 8px;
         font-size: 14px;
         font-weight: bold;
-      }
-
-      .restaurant-heading__favorite-btn {
-        background-color: #d61920;
-        padding: 16px 24px;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 4px;
-        width: fit-content;
-        cursor: pointer;
-        transition: all 150ms ease-in-out;
-      }
-
-      .restaurant-heading__favorite-btn:hover {
-        background-color: #c4171d;
-      }
-
-      .restaurant-heading__favorite-btn .icon {
-        width: 16px;
-        color: #fff;
-        margin-right: 4px;
       }
 
       .restaurant-heading__image {
@@ -156,10 +110,7 @@ class RestaurantHeading extends HTMLElement {
               ${this._restaurant.city}, ${this._restaurant.address}
             </p>
           </div>
-          <button class="restaurant-heading__favorite-btn">
-            <span><img src="icons/${this._btnicon}" alt="" class="icon"></span>
-            ${this._btntext}
-          </button>
+          <slot name="favoriteButton"></slot>
         </div>
         <div class="restaurant-heading__image">
           <img src="${API_ENDPOINT.getRestaurantImage(this._restaurant.pictureId)}" alt="">
@@ -167,19 +118,6 @@ class RestaurantHeading extends HTMLElement {
         </div>
       </article>
     `
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    switch (name) {
-      case 'btnicon':
-        this.btnicon = newValue
-        break
-      case 'btntext':
-        this.btntext = newValue
-        break
-    }
-
-    this.render()
   }
 }
 

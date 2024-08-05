@@ -2,8 +2,6 @@ import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
 
 const FavoriteButtonInitiator = {
   async init({ restaurantHeading, restaurant }) {
-    console.log(restaurantHeading)
-    console.log(restaurant)
     await this.renderButton(restaurantHeading, restaurant)
   },
 

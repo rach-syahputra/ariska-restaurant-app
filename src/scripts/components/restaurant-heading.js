@@ -53,6 +53,7 @@ class RestaurantHeading extends HTMLElement {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        padding: 8px;
       }
 
       .restaurant-heading__rating {

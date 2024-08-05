@@ -1,6 +1,7 @@
 import FavoriteRestaurantIdb from '../../../data/favorite-restaurant-idb'
 import RestaurantAPI from '../../../data/restaurant'
 import UrlParser from '../../../routes/url-parser'
+import FavoriteButtonInitiator from '../../../utils/favorite-button-initiator'
 
 const RestaurantDetail = {
   async render() {
@@ -35,60 +36,10 @@ const RestaurantDetail = {
 
     restaurantHeading.restaurant = restaurantHeadingData
 
-    this.renderButton(restaurantHeadingData)
-  },
-
-  async renderButton(restaurant) {
-    const restaurantHeading = document.querySelector('restaurant-heading')
-    const favoriteButton = document.createElement('favorite-button')
-    const unfavoriteButton = document.createElement('unfavorite-button')
-
-    if (await this.isMovieExist(restaurant.id)) {
-      const slottedFavoriteButton = restaurantHeading.shadowRoot
-        .querySelector('slot')
-        .assignedElements()[0]
-
-      if (slottedFavoriteButton) {
-        slottedFavoriteButton.remove()
-      }
-
-      unfavoriteButton.slot = 'favoriteButton'
-      unfavoriteButton.addEventListener('untoggleFavoriteButton', () =>
-        this.onUnfavoriteHandler(restaurant)
-      )
-
-      restaurantHeading.appendChild(unfavoriteButton)
-    } else {
-      const slottedUnfavoriteButton = restaurantHeading.shadowRoot
-        .querySelector('slot')
-        .assignedElements()[0]
-
-      if (slottedUnfavoriteButton) {
-        slottedUnfavoriteButton.remove()
-      }
-
-      favoriteButton.slot = 'favoriteButton'
-      favoriteButton.addEventListener('toggleFavoriteButton', () =>
-        this.onFavoriteHandler(restaurant)
-      )
-
-      restaurantHeading.appendChild(favoriteButton)
-    }
-  },
-
-  async isMovieExist(id) {
-    const restaurant = await FavoriteRestaurantIdb.getRestaurant(id)
-    return !!restaurant
-  },
-
-  async onFavoriteHandler(restaurant) {
-    await FavoriteRestaurantIdb.putRestaurant(restaurant)
-    this.renderButton(restaurant)
-  },
-
-  async onUnfavoriteHandler(restaurant) {
-    await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)
-    this.renderButton(restaurant)
+    FavoriteButtonInitiator.init({
+      restaurantHeading,
+      restaurant
+    })
   },
 
   populateDataToRestaurantCategory(restaurant) {

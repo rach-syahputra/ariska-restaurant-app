@@ -2,17 +2,113 @@ class HeadlineContent extends HTMLElement {
   constructor() {
     super()
 
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._style = document.createElement('style')
+
     this.render()
   }
 
   _emptyContent() {
-    this.innerHTML = ''
+    this._shadowRoot.innerHTML = ''
+  }
+
+  _updateStyle() {
+    this._style.textContent = `  
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }    
+
+      .headline {
+        margin-top: 32px;
+      }
+
+      .headline__figure {
+        width: 100%;
+      }
+
+      .headline__figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 4px;
+        width: 100%;
+        height: 350px;
+      }
+
+      .headline__figure figcaption {
+        text-align: center;
+        color: #666666;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 8px;
+      }
+
+      .headline__content {
+        width: 100%;
+        padding: 16px;
+      }
+
+      .headline__title {
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      .headline__description {
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      .headline__button {
+        text-transform: uppercase;
+        margin-top: 24px;
+        cursor: pointer;
+        padding: 16px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        background-color: #d61920;
+        transition: all 150ms ease-in-out;
+
+        &:hover {
+          background-color: #c4171d;
+        }
+      }
+
+      @media screen and (min-width: 576px) {
+        .headline__content {
+          margin: 0 auto;
+          max-width: 650px;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .headline__content {
+          padding: 16px 32px;
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        .headline {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .headline__description {
+          font-size: 16px;
+        }
+      }
+    `
   }
 
   render() {
     this._emptyContent()
+    this._updateStyle()
 
-    this.innerHTML += `
+    this._shadowRoot.appendChild(this._style)
+
+    this._shadowRoot.innerHTML += `
       <article class="headline">
         <figure class="headline__figure">
           <img src="images/heros/hero-image_4.jpg" alt="A beautiful plated dish with flowers" />

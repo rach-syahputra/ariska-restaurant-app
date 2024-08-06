@@ -33,6 +33,13 @@ class AddReview extends HTMLElement {
         width: 100%;
       }
 
+      .add-review__label {
+        font-weight: 100;
+        font-size: 28px;
+        width: 100%;
+        text-align: center;
+      }
+
       .add-review__input-group {
         display: flex;
         flex-direction: column;
@@ -100,6 +107,7 @@ class AddReview extends HTMLElement {
 
     this._shadowRoot.innerHTML += `
       <form class="add-review">
+        <h1 class="add-review__label">Add Review</h1>
         <div class="add-review__input-group">
           <label for="name">Name</label>
           <input id="name" name="name" required></input>

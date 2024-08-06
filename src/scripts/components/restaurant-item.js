@@ -79,6 +79,12 @@ class RestaurantItem extends HTMLElement {
 
       .restaurant-item__name {
         font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        text-decoration: none;
+        width: fit-content;
+        min-width: 50px;
+        padding: 12px 0;
 
         a {
           text-decoration: none;
@@ -124,9 +130,11 @@ class RestaurantItem extends HTMLElement {
         </div>
         <div class="restaurant-item__content">
           <span class="restaurant-item__rating">&#9733; ${this._restaurant.rating}</span>
-          <h1 class="restaurant-item__name"><a href="/#/detail/${this._restaurant.id}">${
-      this._restaurant.name
-    }</a></h1>
+          <a
+            href="/#/detail/${this._restaurant.id}"
+            class="restaurant-item__name">
+              ${this._restaurant.name}
+          </a>
           <p class="restaurant-item__description">
             ${this._restaurant.description}
           </p>

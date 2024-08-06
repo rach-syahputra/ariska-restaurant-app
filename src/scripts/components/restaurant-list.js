@@ -64,6 +64,7 @@ class RestaurantList extends HTMLElement {
     this._shadowRoot.innerHTML += `
       <article class="restaurant">
         <h1 class="restaurant__label">Explore Restaurants</h1>
+        <slot name="loading"></slot>
         <div class="restaurants" id="restaurantList">
           <slot></slot>
         </div>

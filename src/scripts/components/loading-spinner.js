@@ -14,6 +14,11 @@ class LoadingSpinner extends HTMLElement {
 
   _updateStyle() {
     this._style.textContent = `  
+      .loading {
+        text-align: center;
+        width: 100%;
+      }
+
       .lds-ring,
       .lds-ring div {
         box-sizing: border-box;
@@ -63,7 +68,9 @@ class LoadingSpinner extends HTMLElement {
     this._shadowRoot.appendChild(this._style)
 
     this._shadowRoot.innerHTML += `
+    <div class="loading">
       <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
     `
   }
 }

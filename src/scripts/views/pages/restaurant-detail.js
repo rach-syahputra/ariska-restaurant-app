@@ -1,52 +1,48 @@
 import RestaurantAPI from '../../../data/restaurant'
 import UrlParser from '../../../routes/url-parser'
 import FavoriteButtonInitiator from '../../../utils/favorite-button-initiator'
+import Loading from '../../../utils/loading'
 
 const RestaurantDetail = {
   async render() {
     return `
-      <restaurant-heading></restaurant-heading>
-      <restaurant-menus></restaurant-menus>
-      <customer-reviews></customer-reviews>
-      <add-review></add-review>
+      <div class="restaurant-detail" id="restaurantDetail">
+        
+      </div>
     `
   },
 
   async afterRender() {
+    const restaurantDetail = document.getElementById('restaurantDetail')
     const url = UrlParser.parseActiveUrlWithoutCombiner()
-    const restaurant = await RestaurantAPI.getDetail(url.id)
 
-    this.initialAddReviewButtonListener(restaurant.id)
-    this.populateDataToRestaurantHeading(restaurant)
-    this.populateDataToRestaurantCategory(restaurant.categories)
-    this.populateDataToRestaurantMenus(restaurant.menus)
-    this.populateDataToCustomerReviews(restaurant.customerReviews)
-  },
-
-  initialAddReviewButtonListener(id) {
-    const addReview = document.querySelector('add-review')
-
-    addReview.addEventListener('addReview', () => this.onAddReviewHandler(id))
-  },
-
-  async onAddReviewHandler(id) {
-    const addReview = document.querySelector('add-review')
-
-    const customer = {
-      id: id,
-      name: addReview.shadowRoot.getElementById('name').value,
-      review: addReview.shadowRoot.getElementById('review').value
-    }
+    Loading.show(restaurantDetail)
 
     try {
-      await RestaurantAPI.addReview(customer)
+      const restaurant = await RestaurantAPI.getDetail(url.id)
+
+      this.initialRestaurantHeading(restaurantDetail, restaurant)
+      this.initialRestaurantCategory(restaurant.categories)
+      this.initialRestaurantMenus(restaurantDetail, restaurant.menus)
+      this.initialCustomerReviews(restaurantDetail, restaurant.customerReviews)
+      this.initialAddReview(restaurantDetail, restaurant.id)
     } catch (error) {
       console.error(error)
     }
+
+    Loading.hide(restaurantDetail)
   },
 
-  populateDataToRestaurantHeading(restaurant) {
-    const restaurantHeading = document.querySelector('restaurant-heading')
+  initialAddReview(container, id) {
+    const addReview = document.createElement('add-review')
+
+    addReview.addEventListener('addReview', () => this.onAddReviewHandler(id))
+
+    container.appendChild(addReview)
+  },
+
+  initialRestaurantHeading(container, restaurant) {
+    const restaurantHeading = document.createElement('restaurant-heading')
     const restaurantHeadingData = {
       id: restaurant.id,
       name: restaurant.name,
@@ -63,9 +59,11 @@ const RestaurantDetail = {
       restaurantHeading,
       restaurant
     })
+
+    container.appendChild(restaurantHeading)
   },
 
-  populateDataToRestaurantCategory(restaurant) {
+  initialRestaurantCategory(restaurant) {
     const restaurantCategory = document.createElement('restaurant-category')
     const restaurantHeading = document.querySelector('restaurant-heading')
 
@@ -79,8 +77,8 @@ const RestaurantDetail = {
     })
   },
 
-  populateDataToRestaurantMenus(menus) {
-    const restaurantMenus = document.querySelector('restaurant-menus')
+  initialRestaurantMenus(container, menus) {
+    const restaurantMenus = document.createElement('restaurant-menus')
     const restaurantFoodMenu = restaurantMenus.shadowRoot.querySelector('restaurant-food-menu')
     const restaurantFoodList = restaurantFoodMenu.shadowRoot.getElementById('foodList')
     const restaurantDrinkMenu = restaurantMenus.shadowRoot.querySelector('restaurant-drink-menu')
@@ -99,10 +97,12 @@ const RestaurantDetail = {
 
       restaurantDrinkList.appendChild(li)
     })
+
+    container.appendChild(restaurantMenus)
   },
 
-  populateDataToCustomerReviews(reviews) {
-    const customerReviews = document.querySelector('customer-reviews')
+  initialCustomerReviews(container, reviews) {
+    const customerReviews = document.createElement('customer-reviews')
     const customerReviewsContainer = customerReviews.shadowRoot.getElementById('customerReviews')
 
     reviews.forEach((review) => {
@@ -127,6 +127,24 @@ const RestaurantDetail = {
 
       customerReviewsContainer.appendChild(customerReview)
     })
+
+    container.appendChild(customerReviews)
+  },
+
+  async onAddReviewHandler(id) {
+    const addReview = document.querySelector('add-review')
+
+    const customer = {
+      id: id,
+      name: addReview.shadowRoot.getElementById('name').value,
+      review: addReview.shadowRoot.getElementById('review').value
+    }
+
+    try {
+      await RestaurantAPI.addReview(customer)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

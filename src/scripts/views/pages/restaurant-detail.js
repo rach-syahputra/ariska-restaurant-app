@@ -140,10 +140,12 @@ const RestaurantDetail = {
       review: addReview.shadowRoot.getElementById('review').value
     }
 
-    try {
-      await RestaurantAPI.addReview(customer)
-    } catch (error) {
-      console.error(error)
+    if (customer.id && customer.name && customer.review) {
+      try {
+        await RestaurantAPI.addReview(customer)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }

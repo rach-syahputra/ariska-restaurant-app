@@ -99,7 +99,7 @@ class AddReview extends HTMLElement {
     this._shadowRoot.appendChild(this._style)
 
     this._shadowRoot.innerHTML += `
-      <section class="add-review">
+      <form class="add-review">
         <div class="add-review__input-group">
           <label for="name">Name</label>
           <input id="name" name="name" required></input>
@@ -112,7 +112,7 @@ class AddReview extends HTMLElement {
         <button class="add-review__btn" id="addReviewBtn">
           Post review
         </button>
-      </section>
+      </form>
     `
 
     const addReviewBtn = this._shadowRoot.getElementById('addReviewBtn')

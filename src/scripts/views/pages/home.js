@@ -1,4 +1,5 @@
 import RestaurantAPI from '../../../data/restaurant'
+import Loading from '../../../utils/loading'
 
 const Home = {
   async render() {
@@ -10,9 +11,19 @@ const Home = {
   },
 
   async afterRender() {
-    const restaurants = await RestaurantAPI.getList()
+    const restaurantList = document.querySelector('restaurant-list')
 
-    this.populateRestaurantDataToRestaurantItem(restaurants)
+    Loading.show(restaurantList)
+
+    try {
+      const restaurants = await RestaurantAPI.getList()
+
+      this.populateRestaurantDataToRestaurantItem(restaurants)
+    } catch (error) {
+      console.error(error)
+    }
+
+    Loading.hide(restaurantList)
   },
 
   populateRestaurantDataToRestaurantItem(restaurants) {

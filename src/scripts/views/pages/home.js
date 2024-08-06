@@ -4,35 +4,48 @@ import Loading from '../../../utils/loading'
 const Home = {
   async render() {
     return `
-      <hero-element></hero-element>
-      <headline-content></headline-content>
-      <restaurant-list></restaurant-list>
+      <div class="home" id="home">
+      </div>
     `
   },
 
   async afterRender() {
-    const restaurantList = document.querySelector('restaurant-list')
+    const home = document.getElementById('home')
 
-    Loading.show(restaurantList)
+    Loading.show(home)
 
     try {
       const restaurants = await RestaurantAPI.getList()
 
-      this.populateRestaurantDataToRestaurantItem(restaurants)
+      this.initializeHero(home)
+      this.initializeHeadlineContent(home)
+      this.initializeRestaurantItem(home, restaurants)
     } catch (error) {
       console.error(error)
     }
 
-    Loading.hide(restaurantList)
+    Loading.hide(home)
   },
 
-  populateRestaurantDataToRestaurantItem(restaurants) {
-    const restaurantList = document.querySelector('restaurant-list')
+  initializeHero(container) {
+    const hero = document.createElement('hero-element')
+    container.appendChild(hero)
+  },
+
+  initializeHeadlineContent(container) {
+    const headlineContent = document.createElement('headline-content')
+    container.appendChild(headlineContent)
+  },
+
+  initializeRestaurantItem(container, restaurants) {
+    const restaurantList = document.createElement('restaurant-list')
 
     restaurants.forEach((restaurant) => {
       const restaurantItem = this.createRestaurantItem(restaurant)
       restaurantList.appendChild(restaurantItem)
     })
+
+    container.appendChild(restaurantList)
   },
 
   createRestaurantItem(restaurant) {

@@ -4,6 +4,8 @@ import App from './views/app'
 import './components/index.js'
 
 const app = new App({
+  button: document.querySelector('#menu'),
+  drawer: document.querySelector('#drawer'),
   content: document.querySelector('#mainContent')
 })
 

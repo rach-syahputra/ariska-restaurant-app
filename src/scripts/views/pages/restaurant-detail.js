@@ -21,11 +21,11 @@ const RestaurantDetail = {
     try {
       const restaurant = await RestaurantAPI.getDetail(url.id)
 
-      this.initialRestaurantHeading(restaurantDetail, restaurant)
-      this.initialRestaurantCategory(restaurant.categories)
-      this.initialRestaurantMenus(restaurantDetail, restaurant.menus)
-      this.initialCustomerReviews(restaurantDetail, restaurant.customerReviews)
-      this.initialAddReview(restaurantDetail, restaurant.id)
+      this.initializeRestaurantHeading(restaurantDetail, restaurant)
+      this.initializeRestaurantCategory(restaurant.categories)
+      this.initializeRestaurantMenus(restaurantDetail, restaurant.menus)
+      this.initializeCustomerReviews(restaurantDetail, restaurant.customerReviews)
+      this.initializeAddReview(restaurantDetail, restaurant.id)
     } catch (error) {
       console.error(error)
     }
@@ -33,7 +33,7 @@ const RestaurantDetail = {
     Loading.hide(restaurantDetail)
   },
 
-  initialAddReview(container, id) {
+  initializeAddReview(container, id) {
     const addReview = document.createElement('add-review')
 
     addReview.addEventListener('addReview', () => this.onAddReviewHandler(id))
@@ -41,7 +41,7 @@ const RestaurantDetail = {
     container.appendChild(addReview)
   },
 
-  initialRestaurantHeading(container, restaurant) {
+  initializeRestaurantHeading(container, restaurant) {
     const restaurantHeading = document.createElement('restaurant-heading')
     const restaurantHeadingData = {
       id: restaurant.id,
@@ -63,7 +63,7 @@ const RestaurantDetail = {
     container.appendChild(restaurantHeading)
   },
 
-  initialRestaurantCategory(restaurant) {
+  initializeRestaurantCategory(restaurant) {
     const restaurantCategory = document.createElement('restaurant-category')
     const restaurantHeading = document.querySelector('restaurant-heading')
 
@@ -77,7 +77,7 @@ const RestaurantDetail = {
     })
   },
 
-  initialRestaurantMenus(container, menus) {
+  initializeRestaurantMenus(container, menus) {
     const restaurantMenus = document.createElement('restaurant-menus')
     const restaurantFoodMenu = restaurantMenus.shadowRoot.querySelector('restaurant-food-menu')
     const restaurantFoodList = restaurantFoodMenu.shadowRoot.getElementById('foodList')
@@ -101,7 +101,7 @@ const RestaurantDetail = {
     container.appendChild(restaurantMenus)
   },
 
-  initialCustomerReviews(container, reviews) {
+  initializeCustomerReviews(container, reviews) {
     const customerReviews = document.createElement('customer-reviews')
     const customerReviewsContainer = customerReviews.shadowRoot.getElementById('customerReviews')
 

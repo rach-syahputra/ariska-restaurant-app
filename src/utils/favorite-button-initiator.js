@@ -48,13 +48,21 @@ const FavoriteButtonInitiator = {
   },
 
   async onFavoriteHandler(restaurantHeading, restaurant) {
-    await FavoriteRestaurantIdb.putRestaurant(restaurant)
-    this.renderButton(restaurantHeading, restaurant)
+    try {
+      await FavoriteRestaurantIdb.putRestaurant(restaurant)
+      this.renderButton(restaurantHeading, restaurant)
+    } catch (error) {
+      console.error(error)
+    }
   },
 
   async onUnfavoriteHandler(restaurantHeading, restaurant) {
-    await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)
-    this.renderButton(restaurantHeading, restaurant)
+    try {
+      await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)
+      this.renderButton(restaurantHeading, restaurant)
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

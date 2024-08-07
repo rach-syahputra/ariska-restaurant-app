@@ -137,7 +137,7 @@ const RestaurantDetail = {
     const addReview = document.querySelector('add-review')
 
     const customer = {
-      id: id,
+      id,
       name: addReview.shadowRoot.getElementById('name').value,
       review: addReview.shadowRoot.getElementById('review').value
     }

@@ -1,5 +1,6 @@
 import RestaurantAPI from '../../../data/restaurant'
 import Loading from '../../../utils/loading'
+import ErrorPopupMessage from '../../../utils/error-popup-message'
 
 const Home = {
   async render() {
@@ -22,6 +23,7 @@ const Home = {
       this.initializeRestaurantItem(home, restaurants)
     } catch (error) {
       console.error(error)
+      ErrorPopupMessage.show('Get restaurant list failed')
     }
 
     Loading.hide(home)

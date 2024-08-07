@@ -1,5 +1,6 @@
 import RestaurantAPI from '../../../data/restaurant'
 import UrlParser from '../../../routes/url-parser'
+import ErrorPopupMessage from '../../../utils/error-popup-message'
 import FavoriteButtonInitiator from '../../../utils/favorite-button-initiator'
 import Loading from '../../../utils/loading'
 
@@ -28,6 +29,7 @@ const RestaurantDetail = {
       this.initializeAddReview(restaurantDetail, restaurant.id)
     } catch (error) {
       console.error(error)
+      ErrorPopupMessage.show('Get restaurant detail failed')
     }
 
     Loading.hide(restaurantDetail)

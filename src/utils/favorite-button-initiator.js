@@ -1,4 +1,5 @@
 import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
+import ErrorPopupMessage from '../utils/error-popup-message'
 
 const FavoriteButtonInitiator = {
   async init({ restaurantHeading, restaurant }) {
@@ -53,6 +54,7 @@ const FavoriteButtonInitiator = {
       this.renderButton(restaurantHeading, restaurant)
     } catch (error) {
       console.error(error)
+      ErrorPopupMessage.show('Add to favorite failed')
     }
   },
 
@@ -62,6 +64,7 @@ const FavoriteButtonInitiator = {
       this.renderButton(restaurantHeading, restaurant)
     } catch (error) {
       console.error(error)
+      ErrorPopupMessage.show('Remove from favorite failed')
     }
   }
 }

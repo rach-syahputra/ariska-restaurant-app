@@ -147,6 +147,7 @@ const RestaurantDetail = {
         await RestaurantAPI.addReview(customer)
       } catch (error) {
         console.error(error)
+        ErrorPopupMessage.show('Post review failed')
       }
     }
   }

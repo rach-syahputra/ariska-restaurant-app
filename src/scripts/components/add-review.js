@@ -12,10 +12,10 @@ class AddReview extends HTMLElement {
     this._shadowRoot.innerHTML = ''
   }
 
-  // disconnectedCallback() {
-  //   const addReviewBtn = this._shadowRoot.getElementById('addReviewBtn')
-  //   addReviewBtn.removeEventListener('click', (event) => this._addReview(event))
-  // }
+  disconnectedCallback() {
+    const addReviewBtn = this._shadowRoot.getElementById('addReviewBtn')
+    addReviewBtn.removeEventListener('click', (event) => this._addReview(event))
+  }
 
   _updateStyle() {
     this._style.textContent = ` 
@@ -95,7 +95,8 @@ class AddReview extends HTMLElement {
     `
   }
 
-  _addReview() {
+  _addReview(event) {
+    event.preventDefault()
     this.dispatchEvent(new CustomEvent('addReview'))
   }
 
@@ -124,7 +125,7 @@ class AddReview extends HTMLElement {
     `
 
     const addReviewBtn = this._shadowRoot.getElementById('addReviewBtn')
-    addReviewBtn.addEventListener('click', () => this._addReview())
+    addReviewBtn.addEventListener('click', (event) => this._addReview(event))
   }
 }
 

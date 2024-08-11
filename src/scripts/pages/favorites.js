@@ -1,32 +1,16 @@
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb'
+import FavoritesPresenter from '../presenters/favorites-presenter'
+import FavoritesView from '../views/favorites-view'
+
+const view = new FavoritesView()
 
 const Favorites = {
   async render() {
-    return `
-      <favorite-list></favorite-list>
-    `
+    return view.getTemplate()
   },
 
   async afterRender() {
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants()
-
-    this.populateRestaurantDataToRestaurantItem(restaurants)
-  },
-
-  populateRestaurantDataToRestaurantItem(restaurants) {
-    const favoriteList = document.querySelector('favorite-list')
-
-    restaurants.forEach((restaurant) => {
-      const restaurantItem = this.createRestaurantItem(restaurant)
-      favoriteList.appendChild(restaurantItem)
-    })
-  },
-
-  createRestaurantItem(restaurant) {
-    const restaurantItem = document.createElement('restaurant-item')
-    restaurantItem.restaurant = restaurant
-
-    return restaurantItem
+    new FavoritesPresenter({ view, favoriteRestaurantsModel: FavoriteRestaurantIdb })
   }
 }
 

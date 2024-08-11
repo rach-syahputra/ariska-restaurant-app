@@ -1,3 +1,4 @@
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb'
 import FavoriteButtonInitiator from '../../utils/favorite-button-initiator'
 
 class RestaurantDetailView {
@@ -36,7 +37,8 @@ class RestaurantDetailView {
     restaurantHeading.restaurant = restaurantHeadingData
 
     FavoriteButtonInitiator.init({
-      restaurantHeading,
+      favoriteButtonContainer: restaurantHeading,
+      favoriteRestaurantsModel: FavoriteRestaurantIdb,
       restaurant
     })
 

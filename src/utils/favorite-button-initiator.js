@@ -1,17 +1,20 @@
-import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
 import ErrorPopupMessage from '../utils/error-popup-message'
 
 const FavoriteButtonInitiator = {
-  async init({ restaurantHeading, restaurant }) {
-    await this.renderButton(restaurantHeading, restaurant)
+  async init({ favoriteButtonContainer, favoriteRestaurantsModel, restaurant }) {
+    this._favoriteButtonContainer = favoriteButtonContainer
+    this._favoriteRestaurantsModel = favoriteRestaurantsModel
+    this._restaurant = restaurant
+
+    await this._renderButton()
   },
 
-  async renderButton(restaurantHeading, restaurant) {
+  async _renderButton() {
     const favoriteButton = document.createElement('favorite-button')
     const unfavoriteButton = document.createElement('unfavorite-button')
 
-    if (await this.isMovieExist(restaurant.id)) {
-      const slottedFavoriteButton = restaurantHeading.shadowRoot
+    if (await this._isMovieExist(this._restaurant.id)) {
+      const slottedFavoriteButton = this._favoriteButtonContainer.shadowRoot
         .querySelector('slot')
         .assignedElements()[0]
 
@@ -21,12 +24,12 @@ const FavoriteButtonInitiator = {
 
       unfavoriteButton.slot = 'favoriteButton'
       unfavoriteButton.addEventListener('untoggleFavoriteButton', () =>
-        this.onUnfavoriteHandler(restaurantHeading, restaurant)
+        this._onUnfavoriteHandler()
       )
 
-      restaurantHeading.appendChild(unfavoriteButton)
+      this._favoriteButtonContainer.appendChild(unfavoriteButton)
     } else {
-      const slottedUnfavoriteButton = restaurantHeading.shadowRoot
+      const slottedUnfavoriteButton = this._favoriteButtonContainer.shadowRoot
         .querySelector('slot')
         .assignedElements()[0]
 
@@ -36,32 +39,32 @@ const FavoriteButtonInitiator = {
 
       favoriteButton.slot = 'favoriteButton'
       favoriteButton.addEventListener('toggleFavoriteButton', () =>
-        this.onFavoriteHandler(restaurantHeading, restaurant)
+        this._onFavoriteHandler()
       )
 
-      restaurantHeading.appendChild(favoriteButton)
+      this._favoriteButtonContainer.appendChild(favoriteButton)
     }
   },
 
-  async isMovieExist(id) {
-    const restaurant = await FavoriteRestaurantIdb.getRestaurant(id)
+  async _isMovieExist(id) {
+    const restaurant = await this._favoriteRestaurantsModel.getRestaurant(id)
     return !!restaurant
   },
 
-  async onFavoriteHandler(restaurantHeading, restaurant) {
+  async _onFavoriteHandler() {
     try {
-      await FavoriteRestaurantIdb.putRestaurant(restaurant)
-      this.renderButton(restaurantHeading, restaurant)
+      await this._favoriteRestaurantsModel.putRestaurant(this._restaurant)
+      this._renderButton()
     } catch (error) {
       console.error(error)
       ErrorPopupMessage.show('Add to favorite failed')
     }
   },
 
-  async onUnfavoriteHandler(restaurantHeading, restaurant) {
+  async _onUnfavoriteHandler() {
     try {
-      await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id)
-      this.renderButton(restaurantHeading, restaurant)
+      await this._favoriteRestaurantsModel.deleteRestaurant(this._restaurant.id)
+      this._renderButton()
     } catch (error) {
       console.error(error)
       ErrorPopupMessage.show('Remove from favorite failed')

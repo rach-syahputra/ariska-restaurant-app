@@ -1,6 +1,6 @@
-import RestaurantAPI from '../../../data/restaurant'
-import Loading from '../../../utils/loading'
-import ErrorPopupMessage from '../../../utils/error-popup-message'
+import RestaurantAPI from '../../data/restaurant'
+import Loading from '../../utils/loading'
+import ErrorPopupMessage from '../../utils/error-popup-message'
 
 const Home = {
   async render() {

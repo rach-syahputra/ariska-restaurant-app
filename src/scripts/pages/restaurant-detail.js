@@ -1,8 +1,8 @@
-import RestaurantAPI from '../../../data/restaurant'
-import UrlParser from '../../../routes/url-parser'
-import ErrorPopupMessage from '../../../utils/error-popup-message'
-import FavoriteButtonInitiator from '../../../utils/favorite-button-initiator'
-import Loading from '../../../utils/loading'
+import RestaurantAPI from '../../data/restaurant'
+import UrlParser from '../../routes/url-parser'
+import ErrorPopupMessage from '../../utils/error-popup-message'
+import FavoriteButtonInitiator from '../../utils/favorite-button-initiator'
+import Loading from '../../utils/loading'
 
 const RestaurantDetail = {
   async render() {

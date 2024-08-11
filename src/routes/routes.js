@@ -1,6 +1,6 @@
-import Favorites from '../scripts/views/pages/favorites'
-import Home from '../scripts/views/pages/home'
-import RestaurantDetail from '../scripts/views/pages/restaurant-detail'
+import Favorites from '../scripts/pages/favorites'
+import Home from '../scripts/pages/home'
+import RestaurantDetail from '../scripts/pages/restaurant-detail'
 
 const routes = {
   '/': Home,

@@ -1,4 +1,4 @@
-import FavoriteRestaurantIdb from '../../../data/favorite-restaurant-idb'
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb'
 
 const Favorites = {
   async render() {

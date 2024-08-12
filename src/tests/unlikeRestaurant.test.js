@@ -28,4 +28,22 @@ describe('Unliking A Restaurant', () => {
 
     expect(document.querySelector('favorite-button')).toBeFalsy()
   })
+
+  it('should remove favorited restaurant', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+
+    document.querySelector('unfavorite-button').dispatchEvent(new Event('untoggleFavoriteButton'))
+
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([])
+  })
+
+  it('should unfavorite button click for non-favorited restaurant', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+
+    await FavoriteRestaurantIdb.deleteRestaurant(1)
+
+    document.querySelector('unfavorite-button').dispatchEvent(new Event('untoggleFavoriteButton'))
+
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([])
+  })
 })

@@ -14,9 +14,7 @@ const FavoriteButtonInitiator = {
     const unfavoriteButton = document.createElement('unfavorite-button')
 
     if (await this._isMovieExist(this._restaurant.id)) {
-      const slottedFavoriteButton = this._favoriteButtonContainer.shadowRoot
-        .querySelector('slot')
-        .assignedElements()[0]
+      const slottedFavoriteButton = this._favoriteButtonContainer.querySelector('favorite-button')
 
       if (slottedFavoriteButton) {
         slottedFavoriteButton.remove()
@@ -29,9 +27,7 @@ const FavoriteButtonInitiator = {
 
       this._favoriteButtonContainer.appendChild(unfavoriteButton)
     } else {
-      const slottedUnfavoriteButton = this._favoriteButtonContainer.shadowRoot
-        .querySelector('slot')
-        .assignedElements()[0]
+      const slottedUnfavoriteButton = this._favoriteButtonContainer.querySelector('unfavorite-button')
 
       if (slottedUnfavoriteButton) {
         slottedUnfavoriteButton.remove()

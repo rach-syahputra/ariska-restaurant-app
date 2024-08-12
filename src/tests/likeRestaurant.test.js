@@ -46,4 +46,12 @@ describe('Liking A Restaurant', () => {
 
     await FavoriteRestaurantIdb.deleteRestaurant(1)
   })
+
+  it('should not add a restaurant to favorite when it has no id', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({})
+
+    document.querySelector('favorite-button').dispatchEvent(new Event('toggleFavoriteButton'))
+
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([])
+  })
 })

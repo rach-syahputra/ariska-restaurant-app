@@ -34,4 +34,16 @@ describe('Liking A Restaurant', () => {
 
     await FavoriteRestaurantIdb.deleteRestaurant(1)
   })
+
+  it('should not add a restaurant to favorite when its already liked', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+
+    await FavoriteRestaurantIdb.putRestaurant({ id: 1 })
+
+    document.querySelector('favorite-button').dispatchEvent(new Event('toggleFavoriteButton'))
+
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([{ id: 1 }])
+
+    await FavoriteRestaurantIdb.deleteRestaurant(1)
+  })
 })

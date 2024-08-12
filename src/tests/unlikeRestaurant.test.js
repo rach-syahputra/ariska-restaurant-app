@@ -22,4 +22,10 @@ describe('Unliking A Restaurant', () => {
 
     expect(document.querySelector('unfavorite-button')).toBeTruthy()
   })
+
+  it('should not display favorite button for favorited restaurant', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+
+    expect(document.querySelector('favorite-button')).toBeFalsy()
+  })
 })

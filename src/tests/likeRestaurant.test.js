@@ -1,12 +1,15 @@
+import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
 import * as TestFactories from './helpers/testFactories'
 
 describe('Liking A Restaurant', () => {
-  const addFavoriteButtonContainer = () => {
-    document.body.innerHTML = '<favorite-button></favorite-button>'
+  const addRestaurantHeading = () => {
+    document.body.innerHTML = '<div class="restaurant-detail" id="restaurantDetail"></div>'
+
+    document.getElementById('restaurantDetail').appendChild(document.createElement('restaurant-heading'))
   }
 
   beforeEach(() => {
-    addFavoriteButtonContainer()
+    addRestaurantHeading()
   })
 
   it('should show the favorite button when the restaurant has not been added to favorite before', async () => {
@@ -19,5 +22,16 @@ describe('Liking A Restaurant', () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
 
     expect(document.querySelector('unfavorite-button')).toBeFalsy()
+  })
+
+  it('should be able to like the restaurant', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+
+    document.querySelector('favorite-button').dispatchEvent(new Event('toggleFavoriteButton'))
+
+    const restaurant = await FavoriteRestaurantIdb.getRestaurant(1)
+    expect(restaurant).toEqual({ id: 1 })
+
+    await FavoriteRestaurantIdb.deleteRestaurant(1)
   })
 })

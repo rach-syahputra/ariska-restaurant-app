@@ -25,10 +25,16 @@ class HeroElement extends HTMLElement {
         align-items: center;
         margin: auto;
         width: 100%;
-        min-height: 420px;
+        height: 420px;
         text-align: center;
-        background-image: url('images/heros/hero-image_2.jpg');
         background-position: center;
+      }
+
+      img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
       }
 
       @media screen and (min-width: 1200px) {
@@ -46,7 +52,12 @@ class HeroElement extends HTMLElement {
     this._shadowRoot.appendChild(this._style)
 
     this._shadowRoot.innerHTML += `
-      <div class="hero"></div>
+      <div class="hero">
+        <picture>
+          <source media="(max-width: 768px)" srcset="./images/hero-image_2-small.jpg">
+          <img src='./images/hero-image_2-large.jpg' alt="hero image">
+        </picture>
+      </div>
     `
   }
 }

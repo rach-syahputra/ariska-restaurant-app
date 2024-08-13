@@ -111,7 +111,10 @@ class HeadlineContent extends HTMLElement {
     this._shadowRoot.innerHTML += `
       <article class="headline">
         <figure class="headline__figure">
-          <img src="images/heros/hero-image_4.jpg" alt="A beautiful plated dish with flowers" />
+          <picture>
+            <source media="(max-width: 768px)" srcset="./images/hero-image_4-small.jpg">
+            <img src='./images/hero-image_4-large.jpg' alt="A beautiful plated dish with flowers">
+          </picture>
           <figcaption>A beautiful plated dish with flowers</figcaption>
         </figure>
         <div class="headline__content">

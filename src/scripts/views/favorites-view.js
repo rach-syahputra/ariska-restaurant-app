@@ -3,12 +3,13 @@ import { createRestaurantItemTemplate } from '../../templates/template-creator'
 class FavoritesView {
   getTemplate() {
     return `
-      <favorite-list></favorite-list>
+      <div class="favorite-list" id="favoriteList">
+      </div>
     `
   }
 
   showFavoriteRestaurants(restaurants) {
-    const favoriteList = document.querySelector('favorite-list')
+    const favoriteList = document.getElementById('favoriteList')
     let html
 
     if (restaurants.length > 0) {

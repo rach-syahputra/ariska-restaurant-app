@@ -10,7 +10,8 @@
     "serve": "http-server dist --port 9001",
     "build-serve": "npm run build && npm run serve",
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "e2e": "codeceptjs run --steps"
   },
   "keywords": [],
   "author": "your_name <your.email@domain.com>",

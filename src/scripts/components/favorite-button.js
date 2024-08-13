@@ -19,6 +19,10 @@ class FavoriteButton extends HTMLElement {
 
   _updateStyle() {
     this._style.textContent = ` 
+      :host {
+        width: fit-content;
+      }
+        
       * {
         box-sizing: border-box;
         margin: 0;

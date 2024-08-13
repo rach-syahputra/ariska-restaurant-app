@@ -1,3 +1,4 @@
+import API_ENDPOINT from '../../globals/api-endpoint'
 import ErrorPopupMessage from '../../utils/error-popup-message'
 import Loading from '../../utils/loading'
 
@@ -15,17 +16,20 @@ class HomePresenter {
     try {
       const restaurants = await this._restaurantModel.getList()
 
-      this._displayRestaurants(restaurants)
+      const updatedRestaurants = restaurants.map((restaurant) => {
+        return {
+          ...restaurant,
+          pictureUrl: `${API_ENDPOINT.getRestaurantImage(restaurant.pictureId)}`
+        }
+      })
+
+      this._view.showRestaurants(updatedRestaurants)
     } catch (error) {
       console.error(error)
       ErrorPopupMessage.show('Get restaurant list failed')
     }
 
     Loading.hide(this._view.getContainer())
-  }
-
-  _displayRestaurants(restaurants) {
-    this._view.showRestaurants(restaurants)
   }
 }
 

@@ -69,7 +69,13 @@
 }
 
 .restaurant-item__name {
-  font-size: var.$text-xl;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  width: fit-content;
+  min-width: 50px;
+  padding: 12px 0;
 
   a {
     text-decoration: none;
@@ -80,6 +86,7 @@
 
 .restaurant-item__description {
   font-size: var.$text-base;
+  margin: 0;
 }
 
 @media screen and (min-width: map.get(var.$breakpoints, 'md')) {

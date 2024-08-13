@@ -1,5 +1,5 @@
-import './restaurant-list'
-import './restaurant-item'
+// import './restaurant-list'
+// import './restaurant-item'
 import './headline-content'
 import './hero-element'
 import './restaurant-heading'

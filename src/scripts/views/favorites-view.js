@@ -1,3 +1,5 @@
+import { createRestaurantItemTemplate } from '../../templates/template-creator'
+
 class FavoritesView {
   getTemplate() {
     return `
@@ -7,14 +9,12 @@ class FavoritesView {
 
   showFavoriteRestaurants(restaurants) {
     const favoriteList = document.querySelector('favorite-list')
+    let html
 
     if (restaurants.length > 0) {
-      restaurants.forEach((restaurant) => {
-        const restaurantItem = document.createElement('restaurant-item')
-        restaurantItem.restaurant = restaurant
+      html = restaurants.reduce((carry, restaurant) => carry.concat(createRestaurantItemTemplate(restaurant)), '')
 
-        favoriteList.appendChild(restaurantItem)
-      })
+      favoriteList.innerHTML = html
     } else {
       favoriteList.innerHTML = '<p id="noFavorites">No favorite restaurants to display :(<p>'
     }

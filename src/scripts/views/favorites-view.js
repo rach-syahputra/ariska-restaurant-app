@@ -16,7 +16,7 @@ class FavoritesView {
         favoriteList.appendChild(restaurantItem)
       })
     } else {
-      favoriteList.innerHTML = 'No favorite restaurants to display :('
+      favoriteList.innerHTML = '<p id="noFavorites">No favorite restaurants to display :(<p>'
     }
   }
 }

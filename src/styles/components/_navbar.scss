@@ -20,6 +20,7 @@
   text-align: center;
   @include mix.centering-using-flex();
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .nav__logo {

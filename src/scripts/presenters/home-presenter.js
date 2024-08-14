@@ -1,6 +1,5 @@
 import API_ENDPOINT from '../../globals/api-endpoint'
 import ErrorPopupMessage from '../../utils/error-popup-message'
-import Loading from '../../utils/loading'
 
 class HomePresenter {
   constructor({ view, restaurantModel }) {
@@ -11,7 +10,7 @@ class HomePresenter {
   }
 
   async _showRestaurants() {
-    // this._view.showLoading()
+    this._view.showLoading()
 
     try {
       const restaurants = await this._restaurantModel.getList()

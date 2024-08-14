@@ -10,6 +10,7 @@
   text-align: center;
   background-image: url('../public/images/heros/hero-image_2.jpg');
   background-position: center;
+  overflow: hidden;
 }
 
 @media screen and (min-width: map.get(var.$breakpoints, 'xl')) {

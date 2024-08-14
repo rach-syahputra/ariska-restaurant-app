@@ -2,7 +2,7 @@ const createRestaurantItemTemplate = (restaurant) => {
   return `
     <div class="restaurant-item">
       <div class="restaurant-item__thumbnail">
-        <img src="${restaurant.pictureUrl}" alt="gambar">
+        <img class="lazyload" data-src="${restaurant.pictureUrl}" alt="gambar" loading="lazy">
         <p class="restaurant-item__city">${restaurant.city}</p>
       </div>
       <div class="restaurant-item__content">

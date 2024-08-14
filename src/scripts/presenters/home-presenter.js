@@ -11,7 +11,7 @@ class HomePresenter {
   }
 
   async _showRestaurants() {
-    Loading.show(this._view.getContainer())
+    // this._view.showLoading()
 
     try {
       const restaurants = await this._restaurantModel.getList()
@@ -28,8 +28,6 @@ class HomePresenter {
       console.error(error)
       ErrorPopupMessage.show('Get restaurant list failed')
     }
-
-    Loading.hide(this._view.getContainer())
   }
 }
 

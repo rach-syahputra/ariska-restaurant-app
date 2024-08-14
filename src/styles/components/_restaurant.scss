@@ -93,10 +93,22 @@
   .restaurants {
     grid-template-columns: 1fr 1fr;
   }
+
+  .restaurant-item {
+    height: 600px;
+  }
 }
 
 @media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
   .restaurants {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .restaurant-item {
+    height: 760px;
+  }
+
+  .restaurant-item__description {
+    font-size: var.$text-lg;
   }
 }

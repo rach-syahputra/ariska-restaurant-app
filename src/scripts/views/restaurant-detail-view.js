@@ -116,25 +116,42 @@ class RestaurantDetailView {
   }
 
   _showAddReview() {
-    const addReview = document.createElement('add-review')
+    const addReviewForm = document.createElement('form')
+    addReviewForm.classList.add('add-review')
+    addReviewForm.id = 'addReview'
+    addReviewForm.innerHTML = `
+      <h1 class="add-review__label">Add Review</h1>
+      <div class="add-review__input-group">
+        <label for="name">Name</label>
+        <input id="name" name="name" required></input>
+      </div>
+      
+      <div class="add-review__input-group">
+        <label for="review">Review</label>
+        <textarea id="review" name="review" rows="3" required></textarea>
+      </div>
+      <button class="add-review__btn" id="addReviewBtn">
+        Post review
+      </button>
+    `
 
-    this.getContainer().appendChild(addReview)
+    this.getContainer().appendChild(addReviewForm)
   }
 
-  getAddReviewElement() {
-    return document.querySelector('add-review')
+  getAddReviewButtonElement() {
+    return document.querySelector('#addReviewBtn')
   }
 
   getAddReviewName() {
-    const addReview = document.querySelector('add-review')
+    const addReview = document.querySelector('#addReview')
 
-    return addReview.shadowRoot.getElementById('name')
+    return addReview.querySelector('#name')
   }
 
   getAddReviewBody() {
-    const addReview = document.querySelector('add-review')
+    const addReview = document.querySelector('#addReview')
 
-    return addReview.shadowRoot.getElementById('review')
+    return addReview.querySelector('#review')
   }
 }
 

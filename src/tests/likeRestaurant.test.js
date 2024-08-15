@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
 import * as TestFactories from './helpers/testFactories'
 
@@ -13,19 +14,19 @@ describe('Liking A Restaurant', () => {
   })
 
   it('should show the favorite button when the restaurant has not been added to favorite before', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     expect(document.querySelector('favorite-button')).toBeTruthy()
   })
 
   it('should not show the unfavorite button when the restaurant has not been added to favorite before', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     expect(document.querySelector('unfavorite-button')).toBeFalsy()
   })
 
   it('should be able to like the restaurant', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     document.querySelector('favorite-button').dispatchEvent(new Event('toggleFavoriteButton'))
 
@@ -36,7 +37,7 @@ describe('Liking A Restaurant', () => {
   })
 
   it('should not add a restaurant to favorite when its already liked', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     await FavoriteRestaurantIdb.putRestaurant({ id: 1 })
 

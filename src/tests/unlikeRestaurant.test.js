@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb'
 import * as TestFactories from './helpers/testFactories'
 
@@ -18,19 +19,19 @@ describe('Unliking A Restaurant', () => {
   })
 
   it('should display unfavorite button for favorited restaurant', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     expect(document.querySelector('unfavorite-button')).toBeTruthy()
   })
 
   it('should not display favorite button for favorited restaurant', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     expect(document.querySelector('favorite-button')).toBeFalsy()
   })
 
   it('should remove favorited restaurant', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     document.querySelector('unfavorite-button').dispatchEvent(new Event('untoggleFavoriteButton'))
 
@@ -38,7 +39,7 @@ describe('Unliking A Restaurant', () => {
   })
 
   it('should unfavorite button click for non-favorited restaurant', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1})
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 })
 
     await FavoriteRestaurantIdb.deleteRestaurant(1)
 

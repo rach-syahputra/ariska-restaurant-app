@@ -29,14 +29,19 @@ class RestaurantDetailPresenter {
   }
 
   _initializeAddReviewListener(id) {
-    this._view.getAddReviewElement().addEventListener('addReview', () => this._onAddReviewHandler(id))
+    this._view.getAddReviewButtonElement().addEventListener('click', (event) => this._onAddReviewHandler(id, event))
   }
 
-  async _onAddReviewHandler(id) {
+  async _onAddReviewHandler(id, event) {
+    event.preventDefault()
+
+    const nameInput = this._view.getAddReviewName()
+    const reviewInput = this._view.getAddReviewBody()
+
     const customer = {
       id,
-      name: this._view.getAddReviewName().value,
-      review: this._view.getAddReviewBody().value
+      name: nameInput.value,
+      review: reviewInput.value
     }
 
     if (customer.id && customer.name && customer.review) {
@@ -45,6 +50,14 @@ class RestaurantDetailPresenter {
       } catch (error) {
         console.error(error)
         ErrorPopupMessage.show('Post review failed')
+      }
+    } else {
+      ErrorPopupMessage.show('Name and Review fields are required')
+
+      if (nameInput.value === '') {
+        nameInput.focus()
+      } else if (reviewInput.value === '') {
+        reviewInput.focus()
       }
     }
   }

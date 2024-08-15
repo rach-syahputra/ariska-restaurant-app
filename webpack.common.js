@@ -108,12 +108,9 @@ module.exports = {
       ]
     }),
 
-    process.env.NODE_ENV === 'production' && new BundleAnalyzerPlugin({
-
+    new BundleAnalyzerPlugin({
       analyzerMode: 'static',
-
-      openAnalyzer: false
-
+      openAnalyzer: true
     })
-  ].filter(Boolean)
+  ]
 }

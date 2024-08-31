@@ -2,7 +2,7 @@
 
 Explore Restaurant Web App. A "Front-End Developer Expert" submission project by Dicoding Academy
 
-## Built With
+## Technology Used
 
 - ![Javascript](https://img.shields.io/badge/javascript-black?style=for-the-badge&logo=javascript)
 - ![Webpack](https://img.shields.io/badge/webpack-black?style=for-the-badge&logo=webpack)
@@ -10,6 +10,3 @@ Explore Restaurant Web App. A "Front-End Developer Expert" submission project by
 - ![Sass](https://img.shields.io/badge/sass-black?style=for-the-badge&logo=sass)
 - ![Codeceptjs](https://img.shields.io/badge/codeceptjs-black?style=for-the-badge&logo=codeceptjs)
 - ![Jest](https://img.shields.io/badge/jest-black?style=for-the-badge&logo=jest)
-
-## Project Link
-- https://ariskarestaurant.netlify.app/
